@@ -11,6 +11,7 @@ import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.qiyukf.unicorn.api.ConsultSource;
 import com.qiyukf.unicorn.api.OnBotEventListener;
+import com.qiyukf.unicorn.api.OnMessageItemClickListener;
 import com.qiyukf.unicorn.api.ProductDetail;
 import com.qiyukf.unicorn.api.UICustomization;
 import com.qiyukf.unicorn.api.Unicorn;
@@ -128,6 +129,20 @@ public class FlutterQiyuPlugin implements FlutterPlugin, MethodCallHandler {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
                     context.startActivity(intent);
                     return true;
+                }
+            };
+
+
+            ysfOptions.onMessageItemClickListener = new OnMessageItemClickListener() {
+                @Override
+                public void onURLClicked(Context context, String s) {
+                    Map<String, Object> map = new HashMap<>();
+                    map.put("arguments", s);
+                    channel.invokeMethod("onQuickChange", map);
+
+                    if (s.equals("1001")) {
+                        Log.d("11", "" + true);
+                    }
                 }
             };
             // 如果项目中使用了 Glide 可以通过设置 gifImageLoader 去加载 gif 图片

@@ -75,6 +75,19 @@
     NSDictionary *paramDict = options;
     QYSessionViewController *sessionVC = [[QYSDK sharedSDK] sessionViewController];
 
+    //快捷按钮点击事件获取
+    QYCustomActionConfig *customAC = [[QYSDK sharedSDK] customActionConfig];
+    customAC.customButtonClickBlock=^(NSDictionary *dict){
+        NSString *strA = [NSString stringWithFormat:@"1001"];
+        NSString *strB = [NSString stringWithFormat:dict[@"data"]];
+        [_channel invokeMethod:@"onQuickChange" arguments: @{@"arguments":dict[@"data"]}];
+        if(strA = strB){
+            NSLog(@"------------------");
+            
+        }
+    };
+
+
     QYSource *source = nil;
     if ([paramDict objectForKey:@"source"]) {
         NSDictionary *sourceDict = [paramDict objectForKey:@"source"];
