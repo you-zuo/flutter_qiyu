@@ -141,6 +141,11 @@ public class FlutterQiyuPlugin implements FlutterPlugin, MethodCallHandler {
                     channel.invokeMethod("onQuickChange", map);
 
                     if (s.equals("1001")) {
+
+                        Map<String, Integer> data = new HashMap<>();
+                        data.put("id", 1001);
+
+                        ThrioNavigator.push("biz1/mainPage/exercise", data, true);
                         Log.d("11", "" + true);
                     }
                 }

@@ -36,5 +36,7 @@ android {
 dependencies {
     implementation 'com.qiyukf.unicorn:unicorn:+'
     implementation 'com.github.bumptech.glide:glide:4.10.0'
+    implementation project(path: ':thrio')
+
 //    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 }

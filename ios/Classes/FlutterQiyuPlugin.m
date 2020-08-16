@@ -2,6 +2,8 @@
 #import <QIYU_iOS_SDK/QYSDK.h>
 #import "FlutterQiyuPlugin.h"
 #import "UIBarButtonItem+blocks.h"
+#import "Thrio.h"
+
 
 @interface FlutterQiyuPlugin () <QYConversationManagerDelegate>
 @end
@@ -76,17 +78,15 @@
     QYSessionViewController *sessionVC = [[QYSDK sharedSDK] sessionViewController];
 
     //快捷按钮点击事件获取
-    QYCustomActionConfig *customAC = [[QYSDK sharedSDK] customActionConfig];
-    customAC.customButtonClickBlock=^(NSDictionary *dict){
-        NSString *strA = [NSString stringWithFormat:@"1001"];
-        NSString *strB = [NSString stringWithFormat:dict[@"data"]];
-        [_channel invokeMethod:@"onQuickChange" arguments: @{@"arguments":dict[@"data"]}];
-        if(strA = strB){
-            NSLog(@"------------------");
-            
-        }
-    };
-
+        QYCustomActionConfig *customAC = [[QYSDK sharedSDK] customActionConfig];
+        customAC.customButtonClickBlock=^(NSDictionary *dict){
+            NSString *strA = [NSString stringWithFormat:@"1001"];
+            NSString *strB = [NSString stringWithFormat:dict[@"data"]];
+            [_channel invokeMethod:@"onQuickChange" arguments: @{@"arguments":dict[@"data"]}];
+            if(strA = strB){
+                [ThrioNavigator pushUrl:@"biz1/mainPage/exercise"];
+            }
+        };
 
     QYSource *source = nil;
     if ([paramDict objectForKey:@"source"]) {
