@@ -6,14 +6,14 @@ import './qy_service_window_params.dart';
 import './qy_user_info_params.dart';
 
 typedef UnreadCountChangeListener(int unreadCount);
-typedef QuickChangeListener = Function(String arguments);
+typedef QuickClickListener = Function(String arguments);
 
 class QiYuMethodCallHandler {
   QiYuMethodCallHandler();
 
   List<UnreadCountChangeListener> _unreadCountChangeListeners = [];
 
-  QuickChangeListener _quickChangeListener;
+  QuickClickListener _quickClickListener;
 
   void register(dynamic listener) {
     if (listener is UnreadCountChangeListener) {
@@ -27,8 +27,8 @@ class QiYuMethodCallHandler {
     }
   }
 
-  void addQuickChangeListener(QuickChangeListener quickChangeListener) {
-    _quickChangeListener = quickChangeListener;
+  void addQuickChangeListener(QuickClickListener quickClickListener) {
+    _quickClickListener = quickClickListener;
   }
 
   Future<dynamic> handler(MethodCall call) {
@@ -40,7 +40,7 @@ class QiYuMethodCallHandler {
         }
         break;
       case 'onQuickChange':
-        _quickChangeListener(call.arguments['arguments']);
+        _quickClickListener(call.arguments['arguments']);
         break;
       default:
         throw new UnsupportedError("Unrecognized Method");
@@ -66,8 +66,8 @@ class QiYu {
     _methodCallHandler.register(listener);
   }
 
-  static void onQuickChange(QuickChangeListener quickChangeListener) {
-    _methodCallHandler.addQuickChangeListener(quickChangeListener);
+  static void onQuickClickListener(QuickClickListener quickClickListener) {
+    _methodCallHandler.addQuickChangeListener(quickClickListener);
   }
 
   static Future<bool> registerApp({String appKey, String appName}) async {
