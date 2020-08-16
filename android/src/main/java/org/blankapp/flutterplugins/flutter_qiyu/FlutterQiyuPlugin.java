@@ -7,6 +7,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.hellobike.flutter.thrio.ThrioNavigator;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.StatusBarNotificationConfig;
 import com.qiyukf.unicorn.api.ConsultSource;
@@ -145,7 +146,7 @@ public class FlutterQiyuPlugin implements FlutterPlugin, MethodCallHandler {
                         Map<String, Integer> data = new HashMap<>();
                         data.put("id", 1001);
 
-                        ThrioNavigator.push("biz1/mainPage/exercise", data, true);
+                        ThrioNavigator.push(context,"biz1/mainPage/exercise", data, true);
                         Log.d("11", "" + true);
                     }
                 }
