@@ -84,7 +84,7 @@
             NSString *strB = [NSString stringWithFormat:dict[@"data"]];
             [_channel invokeMethod:@"onQuickChange" arguments: @{@"arguments":dict[@"data"]}];
             if(strA = strB){
-                [ThrioNavigator pushUrl:@"biz1/mainPage/exercise"];
+                [ThrioNavigator pushUrl:@"biz1/exercise"];
             }
         };
 
